@@ -1,6 +1,6 @@
 ---
 title: "Project proposal"
-author: "Team name"
+author: "THE Triangle"
 output: github_document
 ---
 
