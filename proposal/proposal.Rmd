@@ -6,6 +6,8 @@ output: github_document
 
 ```{r load-packages, message = FALSE}
 library(tidyverse)
+library(readxl)
+library(janitor)
 library(broom)
 ```
 
@@ -15,6 +17,23 @@ Our project will be looking at a 2023 dataset by Leslie Hart of microplastic sam
 
 ## 2. Data
 Each row represents an observation of microplastic particles in fish tissue. See the data README for codebook and more information.
+```{r read-data, message=FALSE}
+fish_microplastics <- read_xlsx("../data/Fish_Microplastics_Data_Repository.xlsx", 
+                                na = "NA") %>%
+  janitor::clean_names() 
+
+```
+```{r fix-columns, message=FALSE}
+fish_microplastics <- fish_microplastics %>%
+  mutate(sieve_size = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
+  mutate(sieve_size = case_when(sieve_size == "LG" ~ 777,
+          TRUE ~ as.numeric(sieve_size)))
+  
+```
+```{r}
+glimpse(fish_microplastics)
+```
+
 
 ## 3. Ethics review
 
