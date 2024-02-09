@@ -1,4 +1,5 @@
 ## Fish_Microplastics_Data_Repository
+420 observations of 16 variables
 
 - `sample_batch`: Month and year of sample collection
 - `fish_id`: Distinct ID for fish sample was collected from
