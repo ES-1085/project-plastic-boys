@@ -6,9 +6,9 @@ Mabon Young, John Calzini, and Gordon Maguire
 ## Load packages and data
 
 ``` r
-install.packages("tidyverse")
-install.packages("readxl")
-install.packages("janitor")
+# install.packages("tidyverse")
+# install.packages("readxl")
+# install.packages("janitor")
 
 library(tidyverse)
 library(readxl)
@@ -20,7 +20,7 @@ fish_microplastics <- read_xlsx("data/Fish_Microplastics_Data_Repository.xlsx",
                                 na = "NA") %>%
   janitor::clean_names() 
 
-glimpse(fish_microplastics) 
+glimpse(fish_microplastics)
 ```
 
     ## Rows: 420
