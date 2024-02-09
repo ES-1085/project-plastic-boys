@@ -45,3 +45,12 @@ glimpse(fish_microplastics)
 ``` r
 #Sieve size is still a character, some of the entries have um after them, will need to figure out how to fix that later. Could also convert hot needle into a logical vector.
 ```
+
+``` r
+fish_microplastics <- fish_microplastics %>%
+  mutate(sieve_size = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
+  mutate(sieve_size = case_when(sieve_size == "LG" ~ 777,
+          TRUE ~ as.numeric(sieve_size)))
+```
+
+\`\`\`
