@@ -1,14 +1,27 @@
 Project proposal
 ================
-Team name
+THE Triangle
 
 ``` r
 library(tidyverse)
 library(broom)
 ```
 
-## 1\. Introduction
+## 1. Introduction
 
-## 2\. Data
+Our project will be looking at a 2023 dataset by Leslie Hart of
+microplastic samples in prey fish caught in Sarasota Bay. The samples
+were extracted from muscle tissue and GI tracts of the fish, and sorted
+by size, type, color, and quantity. We are primarily interested in
+looking at how the geographic information relates to variables like
+microplastic concentration, color, and body location, and determining if
+there are any significant correlations.
 
-## 3\. Data analysis plan
+## 2. Data
+
+Each row represents an observation of microplastic particles in fish
+tissue. See the data README for codebook and more information.
+
+## 3. Ethics review
+
+## 4. Data analysis plan

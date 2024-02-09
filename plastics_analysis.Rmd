@@ -30,12 +30,11 @@ glimpse(fish_microplastics)
 
 
 
-```{r fixdacolumns}
+```{r fix-columns}
 fish_microplastics <- fish_microplastics %>%
-  mutate(sieve_size_clean = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
-  relocate(sieve_size_clean, .after = sieve_size) %>%
-  mutate(sieve_size_clean = case_when(sieve_size == "LG" ~ 777,
-          TRUE ~ as.numeric(sieve_size_clean)))
+  mutate(sieve_size = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
+  mutate(sieve_size = case_when(sieve_size == "LG" ~ 777,
+          TRUE ~ as.numeric(sieve_size)))
   
 ```
 
