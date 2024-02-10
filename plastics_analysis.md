@@ -50,7 +50,6 @@ glimpse(fish_microplastics)
 fish_microplastics <- fish_microplastics %>%
   mutate(sieve_size = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
   mutate(sieve_size = case_when(sieve_size == "LG" ~ 777,
-          TRUE ~ as.numeric(sieve_size)))
+          TRUE ~ as.numeric(sieve_size))) %>%
+  mutate(hot_needle = case_when(hot_needle == "yes" ~ TRUE, hot_needle == "no" ~ FALSE))
 ```
-
-\`\`\`
