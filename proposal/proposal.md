@@ -4,22 +4,25 @@ THE Triangle
 
 ``` r
 library(tidyverse)
+library(readxl)
+library(janitor)
 library(broom)
 ```
 
 ## 1. Introduction
 
-Microplastics have become more and more well known throughout the world
-in the past few years. We now recognize that they are an incredibly
-dangerous bi-product to marine life and many organizations have begun to
-attack the problem. That is what this project is about
+\<\<\<\<\<\<\< HEAD Microplastics have become more and more well known
+throughout the world in the past few years. We now recognize that they
+are an incredibly dangerous bi-product to marine life and many
+organizations have begun to attack the problem. That is what this
+project is about
 
 ## 2. Data
 
-Our data concerns the average count of microplastics found in the
-stomachs of fish that are a common prey species for the dolphins in
-Sarasota Bay. We found this on the dryad website which is a library for
-many kinds of data sets.
+Our project will be looking at a 2023 dataset by Leslie Hart of
+microplastic samples in prey fish caught in Sarasota Bay. The samples
+were extracted from muscle tissue and GI tracts of the fish, and sorted
+by size, type, color, and quantity.
 
 ## 3. Ethics review
 
