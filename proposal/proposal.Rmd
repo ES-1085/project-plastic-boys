@@ -16,7 +16,20 @@ Microplastics have become more and more well known throughout the world in the p
 
 ## 2. Data
 Our project will be looking at a 2023 dataset by Leslie Hart of microplastic samples in prey fish caught in Sarasota Bay. The samples were extracted from muscle tissue and GI tracts of the fish, and sorted by size, type, color, and quantity.
+```{r import-and-clean-data, message=FALSE}
+fish_microplastics <- read_xlsx("../data/Fish_Microplastics_Data_Repository.xlsx", 
+                                na = "NA") %>%
+  janitor::clean_names() 
 
+fish_microplastics <- fish_microplastics %>%
+  mutate(sieve_size = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
+  mutate(sieve_size = case_when(sieve_size == "LG" ~ 777,
+          TRUE ~ as.numeric(sieve_size))) %>%
+  mutate(hot_needle = case_when(hot_needle == "yes" ~ TRUE, hot_needle == "no" ~ FALSE))
+```
+```{r glimpse}
+glimpse(fish_microplastics)
+```
 ## 3. Ethics review
 We did not collect this data so there was no ethical issue of us cutting up the fish. 
 
