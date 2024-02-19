@@ -1,7 +1,7 @@
 ---
 title: "Project proposal"
 author: "THE Triangle"
-output: github_document
+output: html_document
 ---
 
 ```{r load-packages, message = FALSE}
@@ -9,6 +9,10 @@ library(tidyverse)
 library(readxl)
 library(janitor)
 library(broom)
+library(ggridges)
+library(leaflet)
+library(htmltools)
+library(sf)
 ```
 
 ## 1. Introduction
@@ -34,6 +38,25 @@ glimpse(fish_microplastics)
 We did not collect this data so there was no ethical issue of us cutting up the fish. 
 
 ## 4. Data analysis plan
-With the data we plan on plotting it in a spatial manner. We want to see where these fish were gathered and if there is any correlation. We also want to see if there is a correlation between different fish and the average count of micro plastics found within it. It would be interesting to see if multiple variables like the distinct IDs and the average count have any correlation.
+With the data we plan on primarily making spatial plots with Leaflet. We want to see where these fish were gathered and if there is any correlation with the. We also want to see if there is a correlation between different fish and the average count of micro plastics found within it. It would be interesting to see if multiple variables like the distinct IDs and the average count have any correlation.
 
-
+```{r prelim-plot-gi-bar}
+fish_microplastics %>%
+  group_by(fish_id) %>%
+  ggplot(aes(x = fish_id, fill = sample_type)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+```
+```{r prelim-plot-quant-density}
+fish_microplastics %>%
+  group_by(fish_id) %>%
+  ggplot(aes(x = quantity, y = fish_id, fill = fish_id)) +
+  geom_density_ridges()
+```
+```{r prelim-leaflet}
+leaflet(data = fish_microplastics) %>%
+  addProviderTiles(providers$Esri.OceanBasemap) %>%
+  setView(lng = -82.5,
+          lat = 27.4,
+          zoom = 10)
+```
