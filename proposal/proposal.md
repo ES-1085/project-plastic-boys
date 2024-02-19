@@ -7,21 +7,29 @@ library(tidyverse)
 library(readxl)
 library(janitor)
 library(broom)
+library(ggridges)
+library(leaflet)
+library(htmltools)
+library(sf)
 ```
 
 ## 1. Introduction
 
 Microplastics have become more and more well known throughout the world
 in the past few years. We now recognize that they are an incredibly
-dangerous bi-product to marine life and many organizations have begun to
-attack the problem. That is what this project is about
+dangerous byproduct to marine life and many organizations have begun to
+investigate the problem. That is what this project is about. Our project
+will be looking at a 2023 dataset by Leslie Hart of microplastic samples
+in prey fish caught in Sarasota Bay. The samples were extracted from
+muscle tissue and GI tracts of the fish, and sorted by size, type,
+color, and quantity.
+
+Questions: Is there a discrepancy in the amount of microplastics in
+different locations of the fish? Does the size of the fragment have a
+relationship to the location? Are larger fragments found in the muscle
+or in the GI tract?
 
 ## 2. Data
-
-Our project will be looking at a 2023 dataset by Leslie Hart of
-microplastic samples in prey fish caught in Sarasota Bay. The samples
-were extracted from muscle tissue and GI tracts of the fish, and sorted
-by size, type, color, and quantity.
 
 ``` r
 fish_microplastics <- read_xlsx("../data/Fish_Microplastics_Data_Repository.xlsx", 
@@ -60,14 +68,38 @@ glimpse(fish_microplastics)
 
 ## 3. Ethics review
 
-We did not collect this data so there was no ethical issue of us cutting
-up the fish.
-
 ## 4. Data analysis plan
 
-With the data we plan on plotting it in a spatial manner. We want to see
-where these fish were gathered and if there is any correlation. We also
-want to see if there is a correlation between different fish and the
-average count of micro plastics found within it. It would be interesting
-to see if multiple variables like the distinct IDs and the average count
-have any correlation.
+With the data, we plan on plotting it in a spatial manner using Leaflet.
+We want to see “in relation to the species type, is there any
+correlation to the quantity and sample mass of the microplastic particle
+type?”. As well as asking the question of “does the color of the
+microplastic lend any correlation to the distribution and placement in
+the sample type?”. The combination of these to questions might allow us
+to understand if there correlation between different fish and the
+average count of microplastics found within Sarasota Bay. It would be
+interesting to see if multiple variables like the distinct IDs and the
+average count have any correlation.
+
+``` r
+fish_microplastics %>%
+  group_by(fish_id) %>%
+  ggplot(aes(x = fish_id, fill = sample_type)) +
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+```
+
+![](proposal_files/figure-gfm/prelim-plot-gi-bar-1.png)<!-- -->
+
+``` r
+fish_microplastics %>%
+  group_by(fish_id) %>%
+  ggplot(aes(x = quantity, y = fish_id, fill = fish_id)) +
+  geom_density_ridges()
+```
+
+    ## Picking joint bandwidth of 1.37
+
+    ## Warning: Removed 1 rows containing non-finite values (`stat_density_ridges()`).
+
+![](proposal_files/figure-gfm/prelim-plot-quant-density-1.png)<!-- -->

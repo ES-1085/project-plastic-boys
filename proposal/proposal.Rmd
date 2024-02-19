@@ -1,7 +1,7 @@
 ---
 title: "Project proposal"
 author: "THE Triangle"
-output: html_document
+output: github_document
 ---
 
 ```{r load-packages, message = FALSE}
@@ -16,7 +16,7 @@ library(sf)
 ```
 
 ## 1. Introduction
-Microplastics have become more and more well known throughout the world in the past few years. We now recognize that they are an incredibly dangerous bi-product to marine life and many organizations have begun to attack the problem. That is what this project is about. Our project will be looking at a 2023 dataset by Leslie Hart of microplastic samples in prey fish caught in Sarasota Bay. The samples were extracted from muscle tissue and GI tracts of the fish, and sorted by size, type, color, and quantity.
+Microplastics have become more and more well known throughout the world in the past few years. We now recognize that they are an incredibly dangerous byproduct to marine life and many organizations have begun to investigate the problem. That is what this project is about. Our project will be looking at a 2023 dataset by Leslie Hart of microplastic samples in prey fish caught in Sarasota Bay. The samples were extracted from muscle tissue and GI tracts of the fish, and sorted by size, type, color, and quantity.
 
 Questions:
 Is there a discrepancy in the amount of microplastics in different locations of the fish?
@@ -45,7 +45,7 @@ glimpse(fish_microplastics)
 
 ## 4. Data analysis plan
 
-With the data we plan on plotting it in a spatial manner. We want to see "in relation to the species type is there any correlation to the quanity and sample mass of the microplastic particle type?". As well as asking the question of "does the color of the microplastic lend itself any correlation to the distribution and placement in the sample type?". The combination of these to questions might allow us to understand if there correlation between different fish and the average count of micro plastics found within Sarasota Bay. It would be interesting to see if multiple variables like the distinct IDs and the average count have any correlation.
+With the data, we plan on plotting it in a spatial manner using Leaflet. We want to see "in relation to the species type, is there any correlation to the quantity and sample mass of the microplastic particle type?". As well as asking the question of "does the color of the microplastic lend any correlation to the distribution and placement in the sample type?". The combination of these to questions might allow us to understand if there correlation between different fish and the average count of microplastics found within Sarasota Bay. It would be interesting to see if multiple variables like the distinct IDs and the average count have any correlation.
 
 
 ```{r prelim-plot-gi-bar}
@@ -61,10 +61,4 @@ fish_microplastics %>%
   ggplot(aes(x = quantity, y = fish_id, fill = fish_id)) +
   geom_density_ridges()
 ```
-```{r prelim-leaflet}
-leaflet(data = fish_microplastics) %>%
-  addProviderTiles(providers$Esri.OceanBasemap) %>%
-  setView(lng = -82.5,
-          lat = 27.4,
-          zoom = 10)
-```
+
