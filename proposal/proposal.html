@@ -5594,14 +5594,18 @@ library(sf)</code></pre>
 <p>Microplastics have become more and more well known throughout the
 world in the past few years. We now recognize that they are an
 incredibly dangerous bi-product to marine life and many organizations
-have begun to attack the problem. That is what this project is about</p>
-</div>
-<div id="data" class="section level2">
-<h2>2. Data</h2>
-<p>Our project will be looking at a 2023 dataset by Leslie Hart of
+have begun to attack the problem. That is what this project is about.
+Our project will be looking at a 2023 dataset by Leslie Hart of
 microplastic samples in prey fish caught in Sarasota Bay. The samples
 were extracted from muscle tissue and GI tracts of the fish, and sorted
 by size, type, color, and quantity.</p>
+<p>Questions: Is there a discrepancy in the amount of microplastics in
+different locations of the fish? Does the size of the fragment have a
+relationship to the location? Are larger fragments found in the muscle
+or in the GI tract?</p>
+</div>
+<div id="data" class="section level2">
+<h2>2. Data</h2>
 <pre class="r"><code>fish_microplastics &lt;- read_xlsx(&quot;../data/Fish_Microplastics_Data_Repository.xlsx&quot;, 
                                 na = &quot;NA&quot;) %&gt;%
   janitor::clean_names() 
@@ -5633,17 +5637,19 @@ fish_microplastics &lt;- fish_microplastics %&gt;%
 </div>
 <div id="ethics-review" class="section level2">
 <h2>3. Ethics review</h2>
-<p>We did not collect this data so there was no ethical issue of us
-cutting up the fish.</p>
 </div>
 <div id="data-analysis-plan" class="section level2">
 <h2>4. Data analysis plan</h2>
-<p>With the data we plan on primarily making spatial plots with Leaflet.
-We want to see where these fish were gathered and if there is any
-correlation with the. We also want to see if there is a correlation
-between different fish and the average count of micro plastics found
-within it. It would be interesting to see if multiple variables like the
-distinct IDs and the average count have any correlation.</p>
+<p>With the data we plan on plotting it in a spatial manner. We want to
+see “in relation to the species type is there any correlation to the
+quanity and sample mass of the microplastic particle type?”. As well as
+asking the question of “does the color of the microplastic lend itself
+any correlation to the distribution and placement in the sample type?”.
+The combination of these to questions might allow us to understand if
+there correlation between different fish and the average count of micro
+plastics found within Sarasota Bay. It would be interesting to see if
+multiple variables like the distinct IDs and the average count have any
+correlation.</p>
 <pre class="r"><code>fish_microplastics %&gt;%
   group_by(fish_id) %&gt;%
   ggplot(aes(x = fish_id, fill = sample_type)) +
@@ -5662,8 +5668,8 @@ distinct IDs and the average count have any correlation.</p>
   setView(lng = -82.5,
           lat = 27.4,
           zoom = 10)</code></pre>
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-67c98764efe3cbd4aa36" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-67c98764efe3cbd4aa36">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.OceanBasemap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[27.4,-82.5],10,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-07b59fd8f15e3227b1d2" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-07b59fd8f15e3227b1d2">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.OceanBasemap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[27.4,-82.5],10,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 
 
