@@ -34,6 +34,6 @@ glimpse(fish_microplastics)
 We did not collect this data so there was no ethical issue of us cutting up the fish. 
 
 ## 4. Data analysis plan
-With the data we plan on plotting it in a spatial manner. We want to see where these fish were gathered and if there is any correlation. We also want to see if there is a correlation between different fish and the average count of micro plastics found within it. It would be interesting to see if multiple variables like the distinct IDs and the average count have any correlation.
+With the data we plan on plotting it in a spatial manner. We want to see "in relation to the species type is there any correlation to the quanity and sample mass of the microplastic particle type?". As well as asking the question of "does the color of the microplastic lend itself any correlation to the distribution and placement in the sample type?". The combination of these to questions might allow us to understand if there correlation between different fish and the average count of micro plastics found within Sarasota Bay. It would be interesting to see if multiple variables like the distinct IDs and the average count have any correlation.
 
 
