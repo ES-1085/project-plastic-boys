@@ -53,3 +53,54 @@ fish_microplastics <- fish_microplastics %>%
   mutate(sieve_size_clean = case_when(sieve_size == "LG" ~ 777,
           TRUE ~ as.numeric(sieve_size_clean)))
 ```
+
+``` r
+ggplot(data = fish_microplastics, mapping = aes(x = net_sample_mass_g)) +
+  geom_histogram(binwidth = 1000) +
+  facet_wrap(~color)
+```
+
+![](plastics_analysis_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+``` r
+fish_microplastics %>%
+  group_by(color) %>%
+  summarize(
+    avg_ht = mean(quantity, na.rm = TRUE)
+    ) %>% 
+  arrange(desc(avg_ht)) %>% 
+slice(1:5) 
+```
+
+    ## # A tibble: 5 × 2
+    ##   color       avg_ht
+    ##   <chr>        <dbl>
+    ## 1 transparent  12.4 
+    ## 2 multi         7   
+    ## 3 yellow        6.67
+    ## 4 yellowed      5.60
+    ## 5 red           3.05
+
+``` r
+fish_microplastics %>% 
+group_by(color) %>%
+  summarize(
+    avg_ht = mean(quantity, na.rm = TRUE), median = median(quantity, na.rm = TRUE), min = min(quantity, na.rm = TRUE), max = max(quantity, na.rm = TRUE), sd = sd(quantity, na.rm = TRUE), IQR = IQR(quantity, na.rm = TRUE)
+    )
+```
+
+    ## # A tibble: 12 × 7
+    ##    color       avg_ht median   min   max     sd   IQR
+    ##    <chr>        <dbl>  <dbl> <dbl> <dbl>  <dbl> <dbl>
+    ##  1 black         2.1     1       1     7  1.49    2  
+    ##  2 blue          2.56    2       1    12  2.10    2  
+    ##  3 brown         1       1       1     1  0       0  
+    ##  4 green         1.57    1       1     4  1.13    0.5
+    ##  5 multi         7       5       5    11  3.46    3  
+    ##  6 orange        2.87    2       1    10  2.22    3  
+    ##  7 pink          1.5     1       1     4  0.905   1  
+    ##  8 purple        2.58    1.5     1    11  2.87    1.5
+    ##  9 red           3.05    2       1    19  3.54    2  
+    ## 10 transparent  12.4     6       1   109 19.1    10  
+    ## 11 yellow        6.67    2.5     1    40 11.2     2.5
+    ## 12 yellowed      5.60    4       1    34  5.97    4
