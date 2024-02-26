@@ -48,19 +48,40 @@ glimpse(fish_microplastics)
 
 ``` r
 fish_microplastics <- fish_microplastics %>%
-  mutate(sieve_size_clean = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
-  relocate(sieve_size_clean, .after = sieve_size) %>%
-  mutate(sieve_size_clean = case_when(sieve_size == "LG" ~ 777,
-          TRUE ~ as.numeric(sieve_size_clean)))
+  mutate(sieve_size = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
+  mutate(sieve_size = case_when(sieve_size == "LG" ~ 777,
+          TRUE ~ as.numeric(sieve_size))) %>%
+  mutate(hot_needle = case_when(hot_needle == "yes" ~ TRUE, hot_needle == "no" ~ FALSE))
 ```
 
 ``` r
 ggplot(data = fish_microplastics, mapping = aes(x = net_sample_mass_g)) +
-  geom_histogram(binwidth = 1000) +
-  facet_wrap(~color)
+  geom_histogram(binwidth = 1000) + 
+  facet_wrap(~color) 
 ```
 
 ![](plastics_analysis_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+``` r
+#You could also present this information in a bar graph, a histogram with a binwidth of 1000 will always be just 1 bar. Also, I wonder why we're seeing negative values? It's probably a result of overly large binwidth, but maybe ask Laurie about that.
+
+ggplot(data = fish_microplastics, mapping = aes(x = net_sample_mass_g)) +
+  geom_histogram(binwidth = 5) + 
+  facet_wrap(~color) 
+```
+
+![](plastics_analysis_files/figure-gfm/unnamed-chunk-1-2.png)<!-- -->
+
+``` r
+# This graph still isn't telling us that much; remember, the net sample mass isn't the mass of the plastic, it's the mass of the sample the plastic was taken from. It could still be helpful if we wanted to look at microplastic density, though! 
+plastic_dens <- fish_microplastics %>%
+  group_by(fish_id) %>%
+  reframe(plastic_density = sum(quantity)/net_sample_mass_g, na.rm = TRUE, sample_type) %>%
+  distinct(fish_id, sample_type, plastic_density)
+
+fish_microplastics_dens <- fish_microplastics %>%
+  mutate(plastic_density = quantity/net_sample_mass_g)
+```
 
 ``` r
 fish_microplastics %>%
@@ -104,3 +125,7 @@ group_by(color) %>%
     ## 10 transparent  12.4     6       1   109 19.1    10  
     ## 11 yellow        6.67    2.5     1    40 11.2     2.5
     ## 12 yellowed      5.60    4       1    34  5.97    4
+
+``` r
+#That 109 one is a bit terrifying... maybe we could hone in on that fish and see if there's anything unique about it in the spatial data?
+```
