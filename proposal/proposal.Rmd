@@ -48,14 +48,14 @@ glimpse(fish_microplastics)
 With the data, we plan on plotting it in a spatial manner using Leaflet. We want to see "in relation to the species type, is there any correlation to the quantity and sample mass of the microplastic particle type?". As well as asking the question of "does the color of the microplastic lend any correlation to the distribution and placement in the sample type?". The combination of these to questions might allow us to understand if there correlation between different fish and the average count of microplastics found within Sarasota Bay. It would be interesting to see if multiple variables like the distinct IDs and the average count have any correlation.
 
 
-```{r prelim-plot-gi-bar}
+```{r prelim-plot-gi-bar, fig.alt="This bar graph shows the distribution of microplastics within the fish. We can see that most of the microplastics can be found in the GI tract."}
 fish_microplastics %>%
   group_by(fish_id) %>%
   ggplot(aes(x = fish_id, fill = sample_type)) +
   geom_bar() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
-```{r prelim-plot-quant-density}
+```{r prelim-plot-quant-density, fig.alt="In this ridgeline it compares the individual fish and the count of microplastics within. As we can see most of the fish have similar overall counts."}
 fish_microplastics %>%
   group_by(fish_id) %>%
   ggplot(aes(x = quantity, y = fish_id, fill = fish_id)) +

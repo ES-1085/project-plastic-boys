@@ -89,7 +89,7 @@ fish_microplastics %>%
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 
-![](proposal_files/figure-gfm/prelim-plot-gi-bar-1.png)<!-- -->
+<img src="proposal_files/figure-gfm/prelim-plot-gi-bar-1.png" alt="This bar graph shows the distribution of microplastics within the fish. We can see that most of the microplastics can be found in the GI tract."  />
 
 ``` r
 fish_microplastics %>%
@@ -102,4 +102,4 @@ fish_microplastics %>%
 
     ## Warning: Removed 1 rows containing non-finite values (`stat_density_ridges()`).
 
-![](proposal_files/figure-gfm/prelim-plot-quant-density-1.png)<!-- -->
+<img src="proposal_files/figure-gfm/prelim-plot-quant-density-1.png" alt="In this ridgeline it compares the individual fish and the count of microplastics within. As we can see most of the fish have similar overall counts."  />
