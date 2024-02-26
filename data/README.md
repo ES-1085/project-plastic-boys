@@ -17,3 +17,4 @@
 - `hot_needle`: Indicates whether the particle reacted to a hot soldering needle in a manner consistent with plastics
 - `collection_lat`: Geographic latitude of collected fish particle was found in
 - `collection_lat`: Geographic longitude of collected fish particle was found in
+- `plastic_density`: Number of microplastic particles of given type and color per gram of tissue collected
