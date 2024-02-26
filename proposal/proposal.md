@@ -94,12 +94,41 @@ fish_microplastics %>%
 ``` r
 fish_microplastics %>%
   group_by(fish_id) %>%
+  filter(quantity < 60) %>%
   ggplot(aes(x = quantity, y = fish_id, fill = fish_id)) +
   geom_density_ridges()
 ```
 
-    ## Picking joint bandwidth of 1.37
+    ## Picking joint bandwidth of 1.34
 
-    ## Warning: Removed 1 rows containing non-finite values (`stat_density_ridges()`).
-
+<<<<<<< HEAD
 <img src="proposal_files/figure-gfm/prelim-plot-quant-density-1.png" alt="In this ridgeline it compares the individual fish and the count of microplastics within. As we can see most of the fish have similar overall counts."  />
+=======
+![](proposal_files/figure-gfm/prelim-plot-quant-density-1.png)<!-- -->
+
+``` r
+fish_microplastics %>%
+  group_by(fish_id) %>%
+  drop_na(particle_type) %>%
+  summarise(particle_type, count = sum(quantity)) %>%
+  ggplot(aes(x = particle_type, y = count)) +
+  geom_col()
+```
+
+    ## Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in
+    ## dplyr 1.1.0.
+    ## ℹ Please use `reframe()` instead.
+    ## ℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`
+    ##   always returns an ungrouped data frame and adjust accordingly.
+    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+    ## generated.
+
+    ## `summarise()` has grouped output by 'fish_id'. You can override using the
+    ## `.groups` argument.
+
+    ## Warning: Removed 33 rows containing missing values (`position_stack()`).
+
+![](proposal_files/figure-gfm/prelim-plot-particle-type-1.png)<!-- -->
+\## Reminders: Ask Laurie about including Leaflet maps in non-HTML
+outputs Try to figure out what TWP means in this context
+>>>>>>> 27ab79bb97bab837c97b4a0ad11663ad6c39db89

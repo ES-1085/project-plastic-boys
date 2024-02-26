@@ -58,7 +58,19 @@ fish_microplastics %>%
 ```{r prelim-plot-quant-density, fig.alt="In this ridgeline it compares the individual fish and the count of microplastics within. As we can see most of the fish have similar overall counts."}
 fish_microplastics %>%
   group_by(fish_id) %>%
+  filter(quantity < 60) %>%
   ggplot(aes(x = quantity, y = fish_id, fill = fish_id)) +
   geom_density_ridges()
 ```
+```{r prelim-plot-particle-type}
+fish_microplastics %>%
+  group_by(fish_id) %>%
+  drop_na(particle_type) %>%
+  summarise(particle_type, count = sum(quantity)) %>%
+  ggplot(aes(x = particle_type, y = count)) +
+  geom_col()
+```
+## Reminders:
+Ask Laurie about including Leaflet maps in non-HTML outputs
+Try to figure out what TWP means in this context
 

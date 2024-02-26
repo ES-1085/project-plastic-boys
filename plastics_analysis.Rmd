@@ -36,3 +36,33 @@ fish_microplastics <- fish_microplastics %>%
   
 
 ```
+
+
+```{r}
+ggplot(data = fish_microplastics, mapping = aes(x = net_sample_mass_g)) +
+  geom_histogram(binwidth = 1000) +
+  facet_wrap(~color)
+```
+
+```{r}
+fish_microplastics %>%
+  group_by(color) %>%
+  summarize(
+    avg_ht = mean(quantity, na.rm = TRUE)
+    ) %>% 
+  arrange(desc(avg_ht)) %>% 
+slice(1:5) 
+```
+```{r}
+fish_microplastics %>% 
+group_by(color) %>%
+  summarize(
+    avg_ht = mean(quantity, na.rm = TRUE), median = median(quantity, na.rm = TRUE), min = min(quantity, na.rm = TRUE), max = max(quantity, na.rm = TRUE), sd = sd(quantity, na.rm = TRUE), IQR = IQR(quantity, na.rm = TRUE)
+    )
+```
+```{r}
+
+```
+
+
+
