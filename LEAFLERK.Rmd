@@ -39,13 +39,8 @@ leaflet(data = fish_microplastics) %>%
          lat= 27.3460,
           zoom=12) %>%
  
-   addPolygons(
-   fillColor = ~pal7(fish_microplastics),
-      fillOpacity= 0.7,
-   color="white",
-    opacity=1,
-    weight= 2 
-      )
+   addCircleMarkers(lng= fish_microplastics$collection_long,
+                    lat= fish_microplastics$collection_lat)
   
 ```
 ```
