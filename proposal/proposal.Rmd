@@ -41,7 +41,7 @@ fish_microplastics <- fish_microplastics %>%
 glimpse(fish_microplastics)
 ```
 ## 3. Ethics review
-Besides from people choosing to eat the species of fish that were studied there is very little negative impact on people. The spatial aspect is very limited because the data was only collected at two sampling stations. The data is not characteristic of the entire ecosystem because they only chose 4 species, we would have to do more research into whether they are a widely predated or not. This is dependent on ongoing research about micro plastics and whether or not they are heavily accumulated on trophic transfer. A potential positive impact is that if our data shows that fish from a certain area are contaminated with microplastics it could fuel cleanup efforts in that area. If anything the impact would be positive because people would be more aware of potentially contaminated species but any impact positive or negative most likely marginal.
+Besides from people choosing to eat the species of fish that were studied, there is very little potential negative impact on people. The spatial data is very limited because the data was only collected at two sampling stations. The data is not characteristic of the entire ecosystem because they only studied 4 species, we would have to do more research into whether they are widely predated or not. This is dependent on ongoing research about micro plastics and whether or not they are heavily accumulated by trophic transfer. A potential positive impact is that if our data shows that fish from a certain area are particularly contaminated with microplastics, it could fuel cleanup efforts in that area. If anything, the impact would be positive because people would be more aware of potentially contaminated species, but any impact on individuals, positive or negative, will most likely marginal.
 
 ## 4. Data analysis plan
 
@@ -55,14 +55,14 @@ fish_microplastics %>%
   geom_bar() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
-```{r prelim-plot-quant-density, fig.alt="In this ridgeline plot we can see the different individual fish that were collected and the quantitiy of microplastics within it. Thropugh this we can see that most of the fish had a similar quantitiy of microplastics. OC 31, OC 28, and OC 27 having the most quantity of microplastics within them."}
+```{r prelim-plot-quant-density, fig.alt="In this ridgeline plot, we can see the different individual fish that were collected and the quantity of microplastics within them. We can see that most of the fish had a similar density of microplastics at the lower end of the scale, with some individuals having spikes of concentration at higher levels."}
 fish_microplastics %>%
   group_by(fish_id) %>%
   filter(quantity < 60) %>%
   ggplot(aes(x = quantity, y = fish_id, fill = fish_id)) +
   geom_density_ridges()
 ```
-```{r prelim-plot-particle-type, fig.alt="This bar graph shows the different legnths and kinds of microplastics found within the fish. By overwhelming majority the most common form of microplastic was the single fiber with nothing really coming close to it."}
+```{r prelim-plot-particle-type, fig.alt="This bar graph shows the different legnths and kinds of microplastics found within the fish. By overwhelming majority, the most common form of microplastic is single fibers."}
 fish_microplastics %>%
   group_by(fish_id) %>%
   drop_na(particle_type) %>%

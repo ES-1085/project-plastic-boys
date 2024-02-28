@@ -68,6 +68,20 @@ glimpse(fish_microplastics)
 
 ## 3. Ethics review
 
+Besides from people choosing to eat the species of fish that were
+studied, there is very little potential negative impact on people. The
+spatial data is very limited because the data was only collected at two
+sampling stations. The data is not characteristic of the entire
+ecosystem because they only studied 4 species, we would have to do more
+research into whether they are widely predated or not. This is dependent
+on ongoing research about micro plastics and whether or not they are
+heavily accumulated by trophic transfer. A potential positive impact is
+that if our data shows that fish from a certain area are particularly
+contaminated with microplastics, it could fuel cleanup efforts in that
+area. If anything, the impact would be positive because people would be
+more aware of potentially contaminated species, but any impact on
+individuals, positive or negative, will most likely marginal.
+
 ## 4. Data analysis plan
 
 With the data, we plan on plotting it in a spatial manner using Leaflet.
@@ -89,7 +103,7 @@ fish_microplastics %>%
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 
-<img src="proposal_files/figure-gfm/prelim-plot-gi-bar-1.png" alt="This bar graph shows the distribution of microplastics within the fish. We can see that most of the microplastics can be found in the GI tract."  />
+<img src="proposal_files/figure-gfm/prelim-plot-gi-bar-1.png" alt="This bar graph shows the distribution of microplastics within the fish. We can see that the majority of the microplastics can be found in the GI tract."  />
 
 ``` r
 fish_microplastics %>%
@@ -101,10 +115,7 @@ fish_microplastics %>%
 
     ## Picking joint bandwidth of 1.34
 
-<<<<<<< HEAD
-<img src="proposal_files/figure-gfm/prelim-plot-quant-density-1.png" alt="In this ridgeline it compares the individual fish and the count of microplastics within. As we can see most of the fish have similar overall counts."  />
-=======
-![](proposal_files/figure-gfm/prelim-plot-quant-density-1.png)<!-- -->
+<img src="proposal_files/figure-gfm/prelim-plot-quant-density-1.png" alt="In this ridgeline plot, we can see the different individual fish that were collected and the quantity of microplastics within them. We can see that most of the fish had a similar density of microplastics at the lower end of the scale, with some individuals having spikes of concentration at higher levels."  />
 
 ``` r
 fish_microplastics %>%
@@ -128,7 +139,6 @@ fish_microplastics %>%
 
     ## Warning: Removed 33 rows containing missing values (`position_stack()`).
 
-![](proposal_files/figure-gfm/prelim-plot-particle-type-1.png)<!-- -->
+<img src="proposal_files/figure-gfm/prelim-plot-particle-type-1.png" alt="This bar graph shows the different legnths and kinds of microplastics found within the fish. By overwhelming majority, the most common form of microplastic is single fibers."  />
 \## Reminders: Ask Laurie about including Leaflet maps in non-HTML
 outputs Try to figure out what TWP means in this context
->>>>>>> 27ab79bb97bab837c97b4a0ad11663ad6c39db89
