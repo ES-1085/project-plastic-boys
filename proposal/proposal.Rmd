@@ -41,7 +41,7 @@ fish_microplastics <- fish_microplastics %>%
 glimpse(fish_microplastics)
 ```
 ## 3. Ethics review
-
+Besides from people choosing to eat the species of fish that were studied there is very little negative impact on people. The spatial aspect is very limited because the data was only collected at two sampling stations. The data is not characteristic of the entire ecosystem because they only chose 4 species, we would have to do more research into whether they are a widely predated or not. This is dependent on ongoing research about micro plastics and whether or not they are heavily accumulated on trophic transfer. A potential positive impact is that if our data shows that fish from a certain area are contaminated with microplastics it could fuel cleanup efforts in that area. If anything the impact would be positive because people would be more aware of potentially contaminated species but any impact positive or negative most likely marginal.
 
 ## 4. Data analysis plan
 
