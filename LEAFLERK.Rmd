@@ -1,0 +1,52 @@
+```{r load}
+library(sf)
+library(leaflet)
+library(leaflet.providers)
+library(magrittr)
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+library(RColorBrewer)
+
+fish_microplastics <- read_xlsx("data/Fish_Microplastics_Data_Repository.xlsx", 
+                                na = "NA") %>%
+  janitor::clean_names() 
+
+glimpse(fish_microplastics) 
+
+fish_microplastics <- fish_microplastics %>%
+  mutate(sieve_size = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
+  mutate(sieve_size = case_when(sieve_size == "LG" ~ 777,
+          TRUE ~ as.numeric(sieve_size))) %>%
+  mutate(hot_needle = case_when(hot_needle == "yes" ~ TRUE, hot_needle == "no" ~ FALSE))
+
+```
+```{r palette}
+
+summary(fish_microplastics)
+bins <-seq(from= 0, to=109.00, by= 1.00)
+pal7 <-colorBin("RdBu", domain = fish_microplastics, bins=bins)
+
+
+```
+
+
+```{r}
+
+leaflet(data = fish_microplastics) %>%
+  addTiles() %>%
+  setView(lng= -82.5673,
+         lat= 27.3460,
+          zoom=12) %>%
+ 
+   addPolygons(
+   fillColor = ~pal7(fish_microplastics),
+      fillOpacity= 0.7,
+   color="white",
+    opacity=1,
+    weight= 2 
+      )
+  
+```
+```
+
