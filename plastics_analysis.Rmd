@@ -36,7 +36,7 @@ fish_microplastics <- fish_microplastics %>%
 ```
 
 
-```{r}
+```{r ,fig.alt="This histogram shows the distribution of colored microplastics within the fish. The overwhelming majority of microplastics found were transparent with Black and blue being the second and third most common color."}
 ggplot(data = fish_microplastics, mapping = aes(x = net_sample_mass_g)) +
   geom_histogram(binwidth = 1000) + 
   facet_wrap(~color) 
