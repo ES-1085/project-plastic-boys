@@ -74,9 +74,17 @@ group_by(color) %>%
 
 #That 109 one is a bit terrifying... maybe we could hone in on that fish and see if there's anything unique about it in the spatial data?
 ```
-```{r}
-
+```{r add-station}
+fish_microplastics_full <- fish_microplastics_dens %>%
+  mutate(station = case_when(collection_lat == 27.31513 ~ "Sarasota", 
+                             collection_lat == 27.42136 ~ "Longboat Key"))
 ```
 
+```{r dens-by-station, fig.alt= "A bar chart of microplastic quantity by sample mass for the Longboat Key and Sarasota sampling stations showing that microplastics are much more abundant in the Longboat Key samples, even at low sample masses."}
+fish_microplastics_full %>%
+  ggplot(aes(x = net_sample_mass_g, y = quantity, fill = sample_type)) +
+  geom_col() +
+  facet_wrap(~station)
+```
 
 

@@ -60,7 +60,7 @@ ggplot(data = fish_microplastics, mapping = aes(x = net_sample_mass_g)) +
   facet_wrap(~color) 
 ```
 
-![](plastics_analysis_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+<img src="plastics_analysis_files/figure-gfm/unnamed-chunk-1-1.png" alt="This histogram shows the distribution of colored microplastics within the fish. The overwhelming majority of microplastics found were transparent with Black and blue being the second and third most common color."  />
 
 ``` r
 #You could also present this information in a bar graph, a histogram with a binwidth of 1000 will always be just 1 bar. Also, I wonder why we're seeing negative values? It's probably a result of overly large binwidth, but maybe ask Laurie about that.
@@ -70,7 +70,7 @@ ggplot(data = fish_microplastics, mapping = aes(x = net_sample_mass_g)) +
   facet_wrap(~color) 
 ```
 
-![](plastics_analysis_files/figure-gfm/unnamed-chunk-1-2.png)<!-- -->
+<img src="plastics_analysis_files/figure-gfm/unnamed-chunk-1-2.png" alt="This histogram shows the distribution of colored microplastics within the fish. The overwhelming majority of microplastics found were transparent with Black and blue being the second and third most common color."  />
 
 ``` r
 # This graph still isn't telling us that much; remember, the net sample mass isn't the mass of the plastic, it's the mass of the sample the plastic was taken from. It could still be helpful if we wanted to look at microplastic density, though! 
@@ -129,3 +129,20 @@ group_by(color) %>%
 ``` r
 #That 109 one is a bit terrifying... maybe we could hone in on that fish and see if there's anything unique about it in the spatial data?
 ```
+
+``` r
+fish_microplastics_full <- fish_microplastics_dens %>%
+  mutate(station = case_when(collection_lat == 27.31513 ~ "Sarasota", 
+                             collection_lat == 27.42136 ~ "Longboat Key"))
+```
+
+``` r
+fish_microplastics_full %>%
+  ggplot(aes(x = net_sample_mass_g, y = quantity, fill = sample_type)) +
+  geom_col() +
+  facet_wrap(~station)
+```
+
+    ## Warning: Removed 1 rows containing missing values (`position_stack()`).
+
+<img src="plastics_analysis_files/figure-gfm/dens-by-station-1.png" alt="A bar chart of microplastic quantity by sample mass for the Longboat Key and Sarasota sampling stations showing that microplastics are much more abundant in the Longboat Key samples, even at low sample masses."  />
