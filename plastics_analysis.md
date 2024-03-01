@@ -195,12 +195,13 @@ fish_microplastics %>%
 ``` r
 # color.labs <- c("Black", "Blue", "Brown", "Green", "Multi", "Orange", "Pink", "Purple", "Red", "Transparent", "Yellow", "Yellowed")
 # names(color.labs) <- c("Black", "Blue", "Brown", "Green", "Multi", "Orange", "Pink", "Purple", "Red", "Transparent", "Yellow", "Yellowed")
+
 fish_microplastics %>%
   drop_na(particle_type) %>%
   ggplot(aes(x = quantity, fill = fct_relevel(particle_type, "Fiber_single", "Fiber_bundle", "Film", "Fragment_TWP", "Fragment_nonTWP" ))) +
   geom_histogram(binwidth = 5) + 
   facet_wrap(~color) +
-  scale_fill_discrete(labels = c("Single Fiber", "Fiber Bundle", "Film", "Tire Wear Fragment", "Other Fragment")) +
+  scale_fill_viridis_d(labels = c("Single Fiber", "Fiber Bundle", "Film", "Tire Wear Fragment", "Other Fragment")) +
   labs(x = "Quantity",
        y = "Occurences",
        title = "Frequency of Microplastic Particle Colors",
