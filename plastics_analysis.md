@@ -191,3 +191,22 @@ fish_microplastics %>%
     ## Picking joint bandwidth of 1.34
 
 <img src="plastics_analysis_files/figure-gfm/quant-density-1.png" alt="In this ridgeline plot, we can see the different individual fish that were collected and the quantity of microplastics within them. We can see that most of the fish had a similar density of microplastics at the lower end of the scale, with some individuals having spikes of concentration at higher levels."  />
+
+``` r
+# color.labs <- c("Black", "Blue", "Brown", "Green", "Multi", "Orange", "Pink", "Purple", "Red", "Transparent", "Yellow", "Yellowed")
+# names(color.labs) <- c("Black", "Blue", "Brown", "Green", "Multi", "Orange", "Pink", "Purple", "Red", "Transparent", "Yellow", "Yellowed")
+fish_microplastics %>%
+  drop_na(particle_type) %>%
+  ggplot(aes(x = quantity, fill = fct_relevel(particle_type, "Fiber_single", "Fiber_bundle", "Film", "Fragment_TWP", "Fragment_nonTWP" ))) +
+  geom_histogram(binwidth = 5) + 
+  facet_wrap(~color) +
+  scale_fill_discrete(labels = c("Single Fiber", "Fiber Bundle", "Film", "Tire Wear Fragment", "Other Fragment")) +
+  labs(x = "Quantity",
+       y = "Occurences",
+       title = "Frequency of Microplastic Particle Colors",
+       fill = "Particle Type")
+```
+
+    ## Warning: Removed 1 rows containing non-finite values (`stat_bin()`).
+
+<img src="plastics_analysis_files/figure-gfm/color-freq-1.png" alt="A set of histograms showing the frequency of different colors of microplastic colors, where transparent, black, blue, and yellowed particles are by far the most common. It also shows that most of the fiber bundles are transparent, and all of the tire wear particles are black."  />
