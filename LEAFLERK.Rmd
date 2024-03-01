@@ -40,7 +40,8 @@ leaflet(data = fish_microplastics) %>%
           zoom=12) %>%
  
    addCircleMarkers(lng= fish_microplastics$collection_long,
-                    lat= fish_microplastics$collection_lat)
+                    lat= fish_microplastics$collection_lat,
+                    radius = fish_microplastics$quantity)
   
 ```
 ```

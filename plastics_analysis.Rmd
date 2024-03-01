@@ -15,6 +15,9 @@ output: github_document
 library(tidyverse)
 library(readxl)
 library(janitor)
+library(RColorBrewer)
+library(forcats)
+library(ggridges)
 ```
 
 ```{r load-dataset}
@@ -80,11 +83,43 @@ fish_microplastics_full <- fish_microplastics_dens %>%
                              collection_lat == 27.42136 ~ "Longboat Key"))
 ```
 
-```{r dens-by-station, fig.alt= "A bar chart of microplastic quantity by sample mass for the Longboat Key and Sarasota sampling stations showing that microplastics are much more abundant in the Longboat Key samples, even at low sample masses."}
+```{r dens-by-station, fig.alt= "A scatter chart of microplastic quantity by sample mass for the Longboat Key and Sarasota sampling stations showing that microplastics are much more abundant in the Longboat Key samples, even at low sample masses."}
 fish_microplastics_full %>%
-  ggplot(aes(x = net_sample_mass_g, y = quantity, fill = sample_type)) +
-  geom_col() +
-  facet_wrap(~station)
+  ggplot(aes(x = net_sample_mass_g, y = quantity, color = sample_type)) +
+  geom_point() +
+  facet_wrap(~station) +
+  scale_colour_viridis_d() +
+  labs( x = "Sample Mass (g)",
+        y = "Quantity",
+        color = "Sample Type",
+        title = "Quantity of Microplastic Particles in Samples of Different Weights"
+    )
 ```
 
+```{r station-part-type, fig.alt= "A bar graph of the amount of different types of particles at each research station, showing that the Longboat Key station had more particles overall, with significantly more single fibers than Sarasota, with Sarasota having slightly more miscellaneous, uncategorized particles."}
+fish_microplastics_full %>%
+  drop_na(particle_type) %>%
+  ggplot(aes(x = fct_relevel(particle_type, "Fiber_single", "Fiber_bundle", "Film", "Fragment_TWP", "Fragment_nonTWP" ), y = quantity, fill = sample_type)) +
+  geom_col() +
+  facet_wrap(~station) +
+  scale_x_discrete(labels = c("Single Fiber", "Fiber Bundle", "Film", "Tire Wear", "Other")) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  scale_fill_viridis_d() +
+  labs(x = "Particle Type", 
+       y = "Quantity", 
+       fill = "Sample Type",
+       title = "Quantity of Particle Types Between Research Stations" )
+```
+```{r quant-density, fig.alt="In this ridgeline plot, we can see the different individual fish that were collected and the quantity of microplastics within them. We can see that most of the fish had a similar density of microplastics at the lower end of the scale, with some individuals having spikes of concentration at higher levels."}
+fish_microplastics %>%
+  group_by(fish_id) %>%
+  filter(quantity < 60) %>%
+  ggplot(aes(x = quantity, y = fish_id, fill = fish_id, show.legend = FALSE)) +
+  geom_density_ridges() +
+  theme(legend.position = "none") +
+  scale_fill_viridis_d() +
+  labs(x = "Quantity Distribution",
+       y = "Fish ID",
+       title = "Quantity Distribution Density by Individual Fish")
+```
 
