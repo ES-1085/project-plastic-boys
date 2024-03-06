@@ -54,7 +54,8 @@ fish_microplastics <- fish_microplastics %>%
   mutate(sieve_size = str_extract(sieve_size, pattern = "[:digit:]+")) %>%
   mutate(sieve_size = case_when(sieve_size == "LG" ~ 777,
           TRUE ~ as.numeric(sieve_size))) %>%
-  mutate(hot_needle = case_when(hot_needle == "yes" ~ TRUE, hot_needle == "no" ~ FALSE))
+  mutate(hot_needle = case_when(hot_needle == "yes" ~ TRUE, hot_needle == "no" ~ FALSE)) %>%
+  mutate(fish_id = case_when(fish_id == "OC 14" ~ "Oc 14", TRUE ~ fish_id))
 ```
 
 ``` r
@@ -188,7 +189,7 @@ fish_microplastics %>%
        title = "Quantity Distribution Density by Individual Fish")
 ```
 
-    ## Picking joint bandwidth of 1.34
+    ## Picking joint bandwidth of 1.35
 
 <img src="plastics_analysis_files/figure-gfm/quant-density-1.png" alt="In this ridgeline plot, we can see the different individual fish that were collected and the quantity of microplastics within them. We can see that most of the fish had a similar density of microplastics at the lower end of the scale, with some individuals having spikes of concentration at higher levels."  />
 
