@@ -1,6 +1,6 @@
-Project title
+Leslie Hart’s Sarasota Bay Microplastics Data Visualization
 ================
-by Team name
+by Mabon Young, Gordon Maguire, John Calzini
 
 ## Summary
 
@@ -24,16 +24,28 @@ your project.
 
 ## Presentation
 
-Our presentation can be found [here](presentation/presentation.html). You can update this link to a Google Slides link.
+Our presentation can be found
+[here](https://docs.google.com/presentation/d/1VtSjx993S1fUaJIVKVAaUgEzgAhsIhMoO2r_tcoFpJQ/edit?usp=sharing).
 
 ## Data
 
-Include a citation for your data here. See
-<http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840> for guidance
-on proper citation for datasets. If you got your data off the web, make
-sure to note the retrieval date.
+Hart, Leslie (2023). Suspected microplastic counts and characteristics
+in fish muscle and gastrointestinal tissue \[Dataset\]. Dryad.
+<https://doi.org/10.5061/dryad.fn2z34v1d>
 
 ## References
 
-List any references here. You should, at a minimum, list your data
-source.
+Hart, Leslie (2023). Suspected microplastic counts and characteristics
+in fish muscle and gastrointestinal tissue \[Dataset\]. Dryad.
+<https://doi.org/10.5061/dryad.fn2z34v1d> (slide 3)
+
+Who we are. Dryad. (n.d.). <https://datadryad.org/stash/about> (slide 3)
+
+<https://mote.org/news/article/record-year-for-dolphin-calves-in-sarasota-bay-and-vicinity>
+(slide 11 image)
+
+<https://ncfishes.com/marine-fishes-of-north-carolina/orthopristis-chrysoptera/>
+(slide 9 image)
+
+<https://www.scientificamerican.com/article/from-fish-to-humans-a-microplastic-invasion-may-be-taking-a-toll/>
+(slide 2 image)
